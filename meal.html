@@ -19,26 +19,54 @@
 
     <input type="button" value="Meal Choices" onclick="choices()">
 </form>
+<form>
+    <label for="drinkInput">Enter drink: </label>
+    <input type="text" id="drinkInput" value="Wine"><br><br>
 
-<p id="result">Your meal plan will appear here.</p>
+    <label for="starterInput">Enter starter: </label>
+    <input type="text" id="starterInput"><br><br>
+
+    <input type="button" value="Update the meal" onclick="updateMeal()">
+</form>
+
+<p id="mealResult">Your meal plan will appear here.</p>
 
 <script>
+
+let my_meal = {};
+
+
+function choices() {
+    console.log("Getting checkbox values");
+
+
+    my_meal = {};
+
+    
+    my_meal.salad = document.getElementById("serveSalad").checked;
+    my_meal.stew = document.getElementById("makeStew").checked;
+    my_meal.chocolate = document.getElementById("chocolateDessert").checked;
+
+    // display results
+    let out = document.getElementById("mealResult");
+    out.innerHTML = JSON.stringify(my_meal);
+}
+
+function updateMeal() {
+    console.log("Updating meal with text input values");
+
+    // get text inputs
+    let drink = document.getElementById("drinkInput").value;
+    let starter = document.getElementById("starterInput").value;
+
    
-    let my_meal = {};
+    my_meal["drink"] = drink;
+    my_meal["starter"] = starter;
 
-    function choices() {
-       
-        my_meal = {};
-
-        // set checkboxes
-        my_meal.salad = document.getElementById("serveSalad").checked;
-        my_meal.stew = document.getElementById("makeStew").checked;
-        my_meal.chocolate = document.getElementById("chocolateDessert").checked;
-
-        // display results
-        document.getElementById("result").innerHTML = JSON.stringify(my_meal);
-    }
+    // display results
+    let out = document.getElementById("mealResult");
+    out.innerHTML = JSON.stringify(my_meal);
+}
 </script>
-
 </body>
 </html>
