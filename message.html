@@ -37,34 +37,33 @@
 <p id="opResult">Operation result will appear here.</p>
 
 <script>
+
 function amounts() {
-    // input values
+    console.log("Getting form values");
+    
     let standardCharge = parseFloat(document.getElementById("standardCharge").value);
     let discountPosition = parseInt(document.getElementById("discountLength").value);
     let discountCharge = parseFloat(document.getElementById("discountCharge").value);
 
-   
     let totalCosts = "";
 
-    // Loop from position
     for (let size = discountPosition - 3; size <= discountPosition + 3; size++) {
         let totalCost = 0;
 
-       
         if (size <= discountPosition) {
             totalCost = size * standardCharge;
         } else {
-            
             totalCost = (discountPosition * standardCharge) + ((size - discountPosition) * discountCharge);
         }
 
-        // totalCosts
-        totalCosts += `length ${size} is ${totalCost.toFixed(2)}; `;
+        totalCosts += "length " + size + " is " + totalCost.toFixed(2) + "; ";
     }
 
-    // results
-    document.getElementById("results").innerHTML = "Totals are: " + totalCosts;
+    let out = document.getElementById("results");
+    out.innerHTML = "Totals are: " + totalCosts;
 }
+
+
 // Part 6
 function chooseOp() {
     // Get the input
